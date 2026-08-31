@@ -1,10 +1,493 @@
-<doctype>
-  <html>
-  <head>
-      <tittle>Gudumahey</tittle>
-  
-    <body>
-   </head>
-  
-      <h1></h1>hi i am gudumahey>
-     
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GUDUMAHEY | Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #050510;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(0, 150, 255, .18), transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(150, 0, 255, .16), transparent 30%),
+                #050510;
+        }
+
+        .orb {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: .35;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .orb.one {
+            background: #0077ff;
+            left: -100px;
+            top: 10%;
+        }
+
+        .orb.two {
+            background: #8b00ff;
+            right: -100px;
+            bottom: 5%;
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+
+            50% {
+                transform: translateY(-60px) translateX(30px);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1000px;
+            padding: 15px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(10, 10, 25, .65);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 20px;
+
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: white;
+            text-shadow: 0 0 15px #5ca8ff;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 40px;
+        }
+
+        .hero-content {
+            animation: appear 1.2s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile {
+            width: 130px;
+            height: 130px;
+            margin: auto;
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 45px;
+            font-weight: bold;
+
+            background: linear-gradient(135deg, #0b7cff, #8a2be2);
+            box-shadow:
+                0 0 30px rgba(0,130,255,.5),
+                0 0 80px rgba(130,0,255,.25);
+
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            50% {
+                transform: scale(1.05);
+                box-shadow:
+                    0 0 50px rgba(0,130,255,.7),
+                    0 0 100px rgba(130,0,255,.35);
+            }
+        }
+
+        .hero h1 {
+            margin-top: 30px;
+            font-size: clamp(45px, 9vw, 90px);
+            letter-spacing: 5px;
+
+            background: linear-gradient(90deg, #fff, #6db7ff, #b36cff, #fff);
+            background-size: 300%;
+            -webkit-background-clip: text;
+            color: transparent;
+
+            animation: gradient 5s infinite linear;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0%;
+            }
+
+            100% {
+                background-position: 300%;
+            }
+        }
+
+        .typing {
+            margin-top: 10px;
+            font-size: 20px;
+            color: #aaa;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 8px;
+            padding: 13px 25px;
+
+            color: white;
+            text-decoration: none;
+
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 12px;
+
+            background: rgba(255,255,255,.06);
+            backdrop-filter: blur(10px);
+
+            transition: .3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.03);
+            background: rgba(255,255,255,.12);
+            box-shadow: 0 0 25px rgba(80,160,255,.3);
+        }
+
+        .primary {
+            background: linear-gradient(135deg, #087cff, #7928ff);
+            border: none;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 38px;
+            margin-bottom: 50px;
+        }
+
+        .glass {
+            padding: 35px;
+            border-radius: 25px;
+
+            background: rgba(255,255,255,.045);
+            border: 1px solid rgba(255,255,255,.1);
+            backdrop-filter: blur(15px);
+
+            box-shadow: 0 20px 60px rgba(0,0,0,.25);
+
+            transition: .4s;
+        }
+
+        .glass:hover {
+            transform: translateY(-5px);
+            border-color: rgba(100,170,255,.3);
+        }
+
+        .about p {
+            color: #bbb;
+            line-height: 1.8;
+            font-size: 17px;
+            text-align: center;
+        }
+
+        /* Projects */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .project {
+            min-height: 200px;
+        }
+
+        .project h3 {
+            margin-bottom: 15px;
+            font-size: 23px;
+        }
+
+        .project p {
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        .tag {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(70,140,255,.15);
+            color: #75b6ff;
+            font-size: 13px;
+        }
+
+        /* Contact */
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            color: #aaa;
+            margin-bottom: 25px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            border-top: 1px solid rgba(255,255,255,.08);
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 12px 15px;
+            }
+
+            nav a {
+                margin-left: 8px;
+                font-size: 13px;
+            }
+
+            .hero h1 {
+                letter-spacing: 2px;
+            }
+
+            .profile {
+                width: 110px;
+                height: 110px;
+            }
+
+            section {
+                padding: 70px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background">
+        <div class="orb one"></div>
+        <div class="orb two"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">GUDUMAHEY</div>
+
+        <div>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="profile">
+                GM
+            </div>
+
+            <h1>GUDUMAHEY</h1>
+
+            <p class="typing">
+                Developer • Minecraft Creator • Learner
+            </p>
+
+            <div class="buttons">
+                <a href="#projects" class="btn primary">
+                    View Projects
+                </a>
+
+                <a href="#contact" class="btn">
+                    Contact Me
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- About -->
+    <section id="about">
+
+        <h2 class="section-title">
+            About Me
+        </h2>
+
+        <div class="glass about">
+
+            <p>
+                Hi! I'm GUDUMAHEY 👋
+                <br><br>
+                I'm a creator and developer who loves Minecraft,
+                websites, coding and building new projects.
+                I'm currently learning programming and improving
+                my skills every day.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+
+        <h2 class="section-title">
+            My Projects
+        </h2>
+
+        <div class="projects">
+
+            <div class="glass project">
+                <h3>🎮 GUDU MC</h3>
+
+                <p>
+                    A Minecraft server project with
+                    Survival, Lifesteal, Duels and more.
+                </p>
+
+                <span class="tag">
+                    Minecraft
+                </span>
+            </div>
+
+            <div class="glass project">
+                <h3>🌐 Portfolio</h3>
+
+                <p>
+                    My personal animated website
+                    built with HTML, CSS and JavaScript.
+                </p>
+
+                <span class="tag">
+                    Web Development
+                </span>
+            </div>
+
+            <div class="glass project">
+                <h3>💻 Learning Coding</h3>
+
+                <p>
+                    Currently learning programming
+                    and building new projects.
+                </p>
+
+                <span class="tag">
+                    Coding
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+
+        <div class="glass contact">
+
+            <h2 class="section-title">
+                Let's Connect
+            </h2>
+
+            <p>
+                Want to connect or check out my projects?
+            </p>
+
+            <a href="#" class="btn primary">
+                Discord
+            </a>
+
+            <a href="#" class="btn">
+                GitHub
+            </a>
+
+        </div>
+
+    </section>
+
+    <footer>
+        © 2026 GUDUMAHEY • Built with HTML & CSS
+    </footer>
+
+</body>
+</html>
+```
